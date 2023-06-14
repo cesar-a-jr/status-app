@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# Gerenciamento de Status
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação de gerenciamento de status, onde você pode criar e visualizar diferentes status com cores personalizadas. A interface é construída usando React e Styled Components.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- Criar um novo status com um nome e cor personalizados.
+- Visualizar uma prévia do status com o nome e cor selecionados.
+- Visualizar uma lista de status criados anteriormente.
 
-### `npm start`
+## Requisitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Certifique-se de ter o Node.js e o npm (Node Package Manager) instalados em seu sistema.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Instalação
 
-### `npm test`
+1. Faça o download ou clone este repositório em sua máquina.
+2. Abra o terminal e navegue até o diretório do projeto.
+3. Execute o seguinte comando para instalar as dependências do projeto:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   npm install
+   ```
 
-### `npm run build`
+## Executando a aplicação
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Após concluir a instalação, execute o seguinte comando para iniciar a aplicação:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Isso irá iniciar o servidor de desenvolvimento e a aplicação será aberta em seu navegador padrão.
 
-### `npm run eject`
+## Utilização
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Criando um novo status
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. No campo "Nome do status", digite o nome do status desejado (por exemplo, "Aprovado").
+2. Selecione uma cor para o status clicando em uma das opções disponíveis.
+3. A prévia do status será exibida na área "Prévia".
+4. Clique no botão "Criar Status" para adicionar o status à lista de status criados.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Visualizando a lista de status
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Os status criados serão exibidos abaixo da área "Prévia", na seção "Status Criados". Cada status terá o nome e a cor correspondentes.
 
-## Learn More
+## Personalização
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Você pode personalizar o projeto de acordo com suas preferências. O arquivo `App.css` contém estilos CSS adicionais que podem ser modificados.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar problemas, bugs ou tiver sugestões de melhorias, sinta-se à vontade para abrir uma issue neste repositório.
