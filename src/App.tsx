@@ -1,85 +1,179 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Action, Colors, Create, HomeContainer, StatusModel } from './styles/home';
-import { CaretRight } from '@phosphor-icons/react';
+import { useState } from "react";
+import {
+  Action,
+  Colors,
+  Create,
+  HomeContainer,
+  Inputs,
+  InputsEdit,
+  ListColors,
+  ListStatus,
+  StatusModel,
+} from "./styles/home";
+import { CaretRight, CheckCircle, Trash, X } from "@phosphor-icons/react";
+import * as Popover from "@radix-ui/react-popover";
 
-
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
-  const degrade = ["#FF0000", "#FF6600", "#FFCC00", "#33CCFF", "#0000FF"];
-  const [status, setStatus] = useState<string>()
-  const [statusColor, setStatusColor] = useState<string>()
+  const degrade = [
+    "#009BFF",
+    "#0046FF",
+    "#6356EE",
+    "#8850E1",
+    "#8741B1",
+    "#BF6CCF",
+    "#CA5E97",
+    "#ED92A8",
+    "#B63954",
+    "#CA5646",
+    "#DF9655",
+    "#EBD067",
+    "#A8C74A",
+    "#92CC82",
+    "#00FFC4",
+    "#1E1E1E",
+    "#8D969D",
+    "#D2D2D2",
+    "#e8e8e8",
+    "#f4f4f4",
+  ];
+  const [status, setStatus] = useState<string>();
+  const [statusColor, setStatusColor] = useState<string>();
+  const [colorSelected, setColorSelected] = useState();
+  const [statusColorEdit, setStatusColorEdit] = useState<string>();
+  const [statusLabelEdit, setStatusLabelEdit] = useState<string>();
 
-  const [statusList, setStatusList] = useState<any[]>([])
+  const [statusList, setStatusList] = useState<any[]>([]);
 
   function CreateStatus() {
-    let newStatus =
-    {
+    let newStatus = {
       label: status,
-      color: statusColor
-    }
-
-
-    const statusNew = [...statusList, newStatus]
-    setStatusList(statusNew)
-    console.log(status)
-  }
-
-  const CheckboxWithColor = ({ color }: any) => {
-    const checkboxStyle = {
-      backgroundColor: color,
-      width: '20px',
-      height: '20px',
-      marginRight: '5px',
+      color: statusColor,
     };
-
+    const statusNew = [...statusList, newStatus];
+    setStatusList(statusNew);
+    toast.success("Status adicionado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
-  const inputStyle = {
-    all: 'unset',
-    border: '1px solid black',
-    width: '20px',
-    height: '20px',
-    display: 'inline-block',
+  function deleteStatus(index: number) {
+    const updatedStatusList = [...statusList];
+    updatedStatusList.splice(index, 1);
+    setStatusList(updatedStatusList);
+  }
+
+  function SetColor(color: any) {
+    setStatusColor(color);
+    setColorSelected(color);
+  }
+
+  const saveChange = (index: any) => {
+    const updatedStatusList = [...statusList];
+    updatedStatusList[index] = {
+      color: statusColorEdit,
+      label: statusLabelEdit
+    };
+    setStatusList(updatedStatusList);
   };
 
   return (
-    <HomeContainer >
-      <header>Gerenciamento <CaretRight size={20} /><span>Status</span></header>
+    <HomeContainer>
+      <header>
+        Gerenciamento <CaretRight size={20} />
+        <span>Status</span>
+      </header>
       <h1>Gerenciamento de status</h1>
-
+      <ToastContainer />
       <div>
         <Action>
           <div>
             <p>Nome do status</p>
-            <input type="text" placeholder='Ex: Aprovado' onChange={(e) => setStatus(e.target.value)} />
+            <Inputs
+              type="text"
+              placeholder="Ex: Aprovado"
+              onChange={(e) => setStatus(e.target.value)}
+            />
           </div>
-          <div>
-            <p>Prévia</p>
-            <StatusModel color={statusColor}>
-              <p>{status}</p>
-            </StatusModel>
-          </div>
+          {status !== undefined && statusColor !== undefined && (
+            <div>
+              <p>Prévia</p>
+              <StatusModel color={statusColor}>
+                <p>{status}</p>
+              </StatusModel>
+            </div>
+          )}
         </Action>
-        <div>
+        <ListColors>
           {degrade.map((color, index) => (
-            <Colors color={color} onClick={() => setStatusColor(color)}>
-              
+            <Colors color={color} onClick={() => SetColor(color)}>
+              {color === colorSelected && (
+                <p>
+                  <CheckCircle size={24} />
+                </p>
+              )}
             </Colors>
           ))}
-        </div>
-
+        </ListColors>
       </div>
-      
-      {statusList.map((status, index) => (
-        <StatusModel key={index} color={status.color}>
-          <p>{status.label}</p>
-        </StatusModel>
-      ))}
-
+      <ListStatus>
+        {statusList.map((status, index) => (
+          <Popover.Root>
+            <Popover.Trigger asChild>
+              <StatusModel key={index} color={status.color}>
+                <p>{status.label}</p>
+              </StatusModel>
+            </Popover.Trigger>
+            <Popover.Portal>
+              <Popover.Content className="PopoverContent" sideOffset={5}>
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 10}}
+                >
+                  <button onClick={() => deleteStatus(index)}><Trash size={32} /></button>
+                  <p className="Text" style={{ marginBottom: 10 }}>
+                    Editar
+                  </p>
+                    <label className="Label" htmlFor="label">
+                      Label
+                    </label>
+                    <InputsEdit
+                      className="Input"
+                      defaultValue={status.label}
+                      id="label"
+                      onChange={(e) => setStatusLabelEdit(e.target.value)}
+                    />
+                    <label className="Label" htmlFor="color">
+                      Color
+                    </label>
+                    <InputsEdit
+                      className="Input"
+                      defaultValue={status.color}
+                      id="color"
+                      onChange={(e) => setStatusColorEdit(e.target.value)}
+                    />
+                    <button onClick={()=>saveChange(index)}>Salvar</button>
+                </div>
+                <Popover.Close className="PopoverClose" aria-label="Close">
+                  <X size={32} />
+                </Popover.Close>
+                <Popover.Arrow className="PopoverArrow" />
+              </Popover.Content>
+            </Popover.Portal>
+          </Popover.Root>
+        ))}
+      </ListStatus>
       <Create onClick={() => CreateStatus()}>Criar Status</Create>
-    </HomeContainer >
+    </HomeContainer>
   );
 }
 
