@@ -107,6 +107,19 @@ export const Save = styled.button`
   border-radius: 4px;
   color: #fff;
 `;
+export const Edit = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  margin-top: 8px;
+  width: 113px;
+  border: none;
+  background: #1e1e1e;
+  border-radius: 4px;
+  color: #fff;
+`;
 
 export const Colors = styled.button`
   display: flex;

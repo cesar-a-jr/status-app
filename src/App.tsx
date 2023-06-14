@@ -140,10 +140,7 @@ function App() {
                 <div
                   style={{ display: "flex", flexDirection: "column", gap: 10}}
                 >
-                  <button onClick={() => deleteStatus(index)}><Trash size={32} /></button>
-                  <p className="Text" style={{ marginBottom: 10 }}>
-                    Editar
-                  </p>
+                  <button onClick={() => deleteStatus(index)}><Trash size={24} /></button>
                     <label className="Label" htmlFor="label">
                       Label
                     </label>
