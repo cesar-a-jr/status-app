@@ -6,8 +6,10 @@ Este projeto é uma aplicação de gerenciamento de status, onde você pode cria
 
 - Criar um novo status com um nome e cor personalizados.
 - Visualizar uma prévia do status com o nome e cor selecionados.
-- Visualizar uma lista de status criados anteriormente.
-
+- Visualizar uma lista de status.
+- Editar status criados anteriormente.
+- Excluir status criados anteriormente.
+  
 ## Requisitos
 
 Certifique-se de ter o Node.js e o npm (Node Package Manager) instalados em seu sistema.
