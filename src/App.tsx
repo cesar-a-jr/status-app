@@ -79,10 +79,10 @@ function App() {
     setColorSelected(color);
   }
 
-  const saveChange = (index: any) => {
+  const saveChange = (index: any, color: string) => {
     const updatedStatusList = [...statusList];
     updatedStatusList[index] = {
-      color: statusColorEdit,
+      color: color,
       label: statusLabelEdit
     };
     setStatusList(updatedStatusList);
@@ -153,16 +153,7 @@ function App() {
                       id="label"
                       onChange={(e) => setStatusLabelEdit(e.target.value)}
                     />
-                    <label className="Label" htmlFor="color">
-                      Color
-                    </label>
-                    <InputsEdit
-                      className="Input"
-                      defaultValue={status.color}
-                      id="color"
-                      onChange={(e) => setStatusColorEdit(e.target.value)}
-                    />
-                    <Save onClick={()=>saveChange(index)}>Salvar</Save>
+                    <Save onClick={()=>saveChange(index, status.color)}>Salvar</Save>
                 </div>
                 <Popover.Close className="PopoverClose" aria-label="Close">
                   <X size={32} />

@@ -147,6 +147,7 @@ export const StatusModel = styled.button`
   align-items: center;
   border-radius: 3px;
 
+  border: solid 1px #000;
   padding: 0.5rem 1rem;
   margin: 1rem;
   transition: all 200ms ease-in-out;
