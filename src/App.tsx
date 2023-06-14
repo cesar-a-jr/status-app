@@ -8,6 +8,7 @@ import {
   InputsEdit,
   ListColors,
   ListStatus,
+  Save,
   StatusModel,
 } from "./styles/home";
 import { CaretRight, CheckCircle, Trash, X } from "@phosphor-icons/react";
@@ -161,7 +162,7 @@ function App() {
                       id="color"
                       onChange={(e) => setStatusColorEdit(e.target.value)}
                     />
-                    <button onClick={()=>saveChange(index)}>Salvar</button>
+                    <Save onClick={()=>saveChange(index)}>Salvar</Save>
                 </div>
                 <Popover.Close className="PopoverClose" aria-label="Close">
                   <X size={32} />

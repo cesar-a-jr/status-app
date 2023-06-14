@@ -92,6 +92,22 @@ export const Create = styled.button`
   color: #fff;
 `;
 
+export const Save = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 6.5px;
+
+  width: 113px;
+  height: 42px;
+  border: none;
+  background: #1e1e1e;
+  border-radius: 4px;
+  color: #fff;
+`;
+
 export const Colors = styled.button`
   display: flex;
   align-items: center;
